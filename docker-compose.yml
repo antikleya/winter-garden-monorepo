@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:14
+    ports:
+      - "4000:5432"
+    env_file:
+      - api/postgres.env
+  web:
+    build: ./app/
+    command: bash -c "alembic -c app/database/alembic.ini upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+    volumes:
+      - ./api/:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    env_file:
+      - api/pgadmin.env
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+  telegram_alerts:
+    build: ./Alerts/
+    command: bash -c "python ./main.py"
+    volumes:
+      - ./Alerts/logs/:/logs
+    env_file:
+      - Alerts/bot.env
+    depends_on:
+      - db
