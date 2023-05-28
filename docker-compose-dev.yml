@@ -6,10 +6,10 @@ services:
     ports:
       - "4000:5432"
     env_file:
-      - postgres.env
+      - api/postgres.env
   web:
-    build: ./api/
-    command: bash -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+    build: ./app/
+    command: bash -c "alembic -c app/database/alembic.ini upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
     volumes:
       - ./api/:/code
     ports:
@@ -20,7 +20,7 @@ services:
     container_name: pgadmin
     image: dpage/pgadmin4
     env_file:
-      - pgadmin.env
+      - api/pgadmin.env
     ports:
       - "5050:80"
     depends_on:
@@ -31,7 +31,7 @@ services:
     volumes:
       - ./Alerts/logs/:/logs
     environment:
-      - CHANNEL_TYPE=BOT_PROD_CHANNEL
+      - CHANNEL_TYPE=BOT_TEST_CHANNEL
     env_file:
       - Alerts/bot.env
     depends_on:

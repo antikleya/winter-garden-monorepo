@@ -128,8 +128,9 @@ if __name__ == '__main__':
     ref = db.reference('/Log/')
     logging.basicConfig(filename='logs/log.txt', encoding='utf-8', level=logging.INFO)
     tz = pytz.timezone(os.environ['TZ'])
+    channel_type = os.environ['CHANNEL_TYPE']
     token = os.environ['BOT_TOKEN']
-    channel = os.environ['BOT_CHANNEL']
+    channel = os.environ[channel_type]
     alert_handler = AlertHandler(token=token, channel=channel,
                                  db_reference=ref, time_interval=40, timer_delay=1, tz=tz)
     # alert_handler = AlertHandler(token=bot_config['token'], channel=bot_config['test_channel'],
