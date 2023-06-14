@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from fastapi_users import FastAPIUsers
 from app.auth.manager import get_user_manager
 from app.auth.auth import auth_backend
@@ -17,9 +17,15 @@ authRouter = APIRouter(
 
 authRouter.include_router(
     fastapi_users.get_auth_router(auth_backend),
-    prefix="/jwt"
 )
 
 authRouter.include_router(
     fastapi_users.get_register_router(UserRead, UserCreate)
 )
+
+current_user = fastapi_users.current_user()
+
+
+@authRouter.get('/me', response_model=UserRead)
+def me(user: User = Depends(current_user)):
+    return UserRead.from_orm(user)

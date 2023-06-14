@@ -1,0 +1,1 @@
+{"temperature": {"targetTemp": 20, "pump": {"temperatureDelta": 5, "manualControl": {"allowed": false, "value": true}}, "pid": {"kp": 2, "ki": 5, "kd": 1}}, "topLevelParams": {"sendingInterval": 4, "grDelta": 3}, "humidity": {"interval": {"low": 35, "high": 40}, "relay": {"manualControl": {"allowed": false, "value": true}}}}

@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 psycopg2-binary = "*"
 fastapi = "*"
-sqlalchemy = "*"
 alembic = "*"
 pydantic = "*"
 uvicorn = "*"
@@ -15,6 +14,8 @@ passlib = {extras = ["bcrypt"], version = "*"}
 python-dotenv = "*"
 fastapi-users = {extras = ["sqlalchemy"], version = "*"}
 asyncpg = "*"
+fastapi-utils = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 
