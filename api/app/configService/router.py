@@ -6,8 +6,8 @@ from fastapi_utils.tasks import repeat_every
 
 
 configRouter = APIRouter(
-    prefix='/configService',
-    tags=['configService'],
+    prefix='/config',
+    tags=['config'],
     dependencies=[Depends(current_user)]
 )
 
