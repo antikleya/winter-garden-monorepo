@@ -34,15 +34,15 @@ def get_config():
 
 
 @configRouter.patch('/temperature', status_code=200, response_model=Temperature)
-def update_temperature(temperature: Temperature = Depends(services.valid_temperature)):
+def update_temperature(temperature: Temperature):
     return services.update_temperature(temperature)
 
 
 @configRouter.patch('/humidity', status_code=200, response_model=Humidity)
-def update_humidity(humidity: Humidity = Depends(services.valid_humidity)):
+def update_humidity(humidity: Humidity):
     return services.update_humidity(humidity)
 
 
 @configRouter.patch('/top', status_code=200, response_model=TopLevelParams)
-def update_top_level_props(top_level_params: TopLevelParams = Depends(services.valid_top_level_params)):
+def update_top_level_props(top_level_params: TopLevelParams):
     return services.update_top_level_props(top_level_params)
