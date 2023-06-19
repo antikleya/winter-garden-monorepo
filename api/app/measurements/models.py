@@ -1,11 +1,11 @@
-from sqlalchemy import Column, Integer, Boolean, Float, TIMESTAMP
+from sqlalchemy import Column, Integer, Boolean, Float
 from app.database import Base
 
 
 class Measurement(Base):
     __tablename__ = "measurements"
 
-    timestamp = Column(TIMESTAMP, primary_key=True, autoincrement=False)
+    timestamp = Column(Integer, primary_key=True, autoincrement=False)
     insideHumidity = Column(Float, nullable=False)
     outsideHumidity = Column(Float, nullable=False)
     insideTemperature = Column(Float, nullable=False)

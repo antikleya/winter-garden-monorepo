@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.auth.router import authRouter
 from app.configService.router import configRouter
+from app.measurements.router import measurementsRouter
 from fastapi.middleware.cors import CORSMiddleware
 
 origins = [
@@ -20,3 +21,4 @@ app.add_middleware(
 
 app.include_router(router=authRouter)
 app.include_router(router=configRouter)
+app.include_router(router=measurementsRouter)

@@ -16,6 +16,7 @@ fastapi-users = {extras = ["sqlalchemy"], version = "*"}
 asyncpg = "*"
 fastapi-utils = "*"
 sqlalchemy = "*"
+pytz = "*"
 
 [dev-packages]
 
