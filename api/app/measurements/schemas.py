@@ -1,11 +1,9 @@
 from pydantic import BaseModel, validator
 from datetime import datetime
-import pytz
 from app.config import TZ, MAX_TARGET_HUMIDITY, MAX_TARGET_TEMP, MIN_TARGET_TEMP, MAX_PUMP_TEMPERATURE_DELTA, \
     MIN_PUMP_TEMPERATURE_DELTA
 
 MIN_TIMESTAMP = 1617216126
-timezone = pytz.timezone(TZ)
 MIN_TEMPERATURE = -40
 MAX_TEMPERATURE = 40
 MAX_SPEED = 500
@@ -35,7 +33,7 @@ class MeasurementSchema(BaseModel):
 
     @validator('timestamp')
     def validate_timestamp(cls, value):
-        if value < MIN_TIMESTAMP or value > datetime.now(tz=timezone).timestamp() + 300:
+        if value < MIN_TIMESTAMP or value > datetime.now(tz=TZ).timestamp() + 300:
             raise ValueError('Invalid timestamp')
         return value
 

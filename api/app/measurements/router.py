@@ -1,11 +1,11 @@
 from typing import List
 from app.measurements.schemas import MeasurementSchema
-from fastapi import APIRouter, Depends, Header
+from fastapi import APIRouter, Depends
 from app.database import get_sync_session
 from sqlalchemy.orm import Session
 import app.measurements.services as services
-from app.dependecies import current_user
-from app.measurements.dependecies import authorized_source
+from app.dependencies import current_user
+from app.measurements.dependencies import authorized_source
 
 
 measurementsRouter = APIRouter(

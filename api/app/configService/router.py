@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from app.dependecies import current_user
+from app.dependencies import current_user
 from app.configService.schemas import Config, Temperature, Humidity, TopLevelParams
 import app.configService.services as services
 from fastapi_utils.tasks import repeat_every
