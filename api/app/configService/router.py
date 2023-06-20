@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 from app.dependencies import current_user
 from app.configService.schemas import Config, Temperature, Humidity, TopLevelParams
 import app.configService.services as services
@@ -28,21 +28,21 @@ def save_config_to_file():
     services.save_config_to_file()
 
 
-@configRouter.get('/', response_model=Config, status_code=200)
+@configRouter.get('/', response_model=Config, status_code=status.HTTP_200_OK)
 def get_config():
     return services.get_config()
 
 
-@configRouter.patch('/temperature', status_code=200, response_model=Temperature)
+@configRouter.patch('/temperature', status_code=status.HTTP_200_OK, response_model=Temperature)
 def update_temperature(temperature: Temperature):
     return services.update_temperature(temperature)
 
 
-@configRouter.patch('/humidity', status_code=200, response_model=Humidity)
+@configRouter.patch('/humidity', status_code=status.HTTP_200_OK, response_model=Humidity)
 def update_humidity(humidity: Humidity):
     return services.update_humidity(humidity)
 
 
-@configRouter.patch('/top', status_code=200, response_model=TopLevelParams)
+@configRouter.patch('/top', status_code=status.HTTP_200_OK, response_model=TopLevelParams)
 def update_top_level_props(top_level_params: TopLevelParams):
     return services.update_top_level_props(top_level_params)

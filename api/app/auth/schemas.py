@@ -1,4 +1,5 @@
 from fastapi_users import schemas
+from pydantic import BaseModel
 
 
 class UserRead(schemas.BaseUser[int]):
@@ -11,3 +12,11 @@ class UserCreate(schemas.BaseUserCreate):
 
 class UserUpdate(schemas.BaseUserUpdate):
     pass
+
+
+class CodeRead(BaseModel):
+    code: str
+    ends_at: int
+
+    class Config:
+        orm_mode = True
